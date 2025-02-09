@@ -13,10 +13,11 @@ app.get("/blogs", function (req, res) {
   res.send("here is my blogs");
 });
 
-app.post("/createBlogs", (req, res) => {
+app.post("/createBlogs/:id", (req, res) => {
   console.log(req.query);
+  console.log(req.params);
   const sum = Number(req.query.num1) + Number(req.query.num2);
-  res.end(String(sum));
+  res.status(201).send(`your id is ${req.params.id} and sum is ${sum}`);
 });
 
 app.listen(3000, () => {
