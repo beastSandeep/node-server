@@ -1,23 +1,14 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
+app.set("view engine", "pug");
+app.set("views", path.resolve(__dirname, "./views"));
+
 app.get("/", function (req, res) {
-  res.send("Hello World");
-});
-
-app.get("/about", function (req, res) {
-  res.send("about page is here");
-});
-
-app.get("/blogs", function (req, res) {
-  res.send("here is my blogs");
-});
-
-app.post("/createBlogs/:id", (req, res) => {
-  console.log(req.query);
-  console.log(req.params);
-  const sum = Number(req.query.num1) + Number(req.query.num2);
-  res.status(201).send(`your id is ${req.params.id} and sum is ${sum}`);
+  res
+    .status(200)
+    .render("index", { t: "my dynamic title", m: "anything", value: 10 });
 });
 
 app.listen(3000, () => {
