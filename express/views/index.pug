@@ -3,6 +3,14 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title= t
+    title my titile
   body
-    h1= m
+    input#file(type="file", name="file")
+  script.
+    console.log("hello");
+    const elem = document.querySelector("#file");
+    elem.addEventListener("change", () => {
+      if (elem.files.length == 1) {
+        console.log("File selected: ", elem.files[0]);
+      }
+    });
