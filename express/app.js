@@ -1,20 +1,26 @@
 const express = require("express");
 const path = require("path");
+const { mongoose, Schema } = require("mongoose");
+
 const app = express();
 
-app.set("view engine", "pug"); /// npm i pug
-app.set("views", path.resolve(__dirname, "./views"));
+mongoose.connect("mongodb://127.0.0.1:27017/class");
+const StudentModel = mongoose.model(
+  "detail",
+  new Schema({ name: String, age: Number })
+);
 
-//Serving static files
-app.use(express.static(path.join(__dirname, "/public")));
-
-app.get("/", function (req, res) {
-  res.status(200).render("index");
+app.post("/createStudent", async (req, res) => {
+  await StudentModel.create({
+    name: req.query.name,
+    age: Number(req.query.age),
+  });
+  res.end("done");
 });
 
-app.post("/upload", (req, res) => {
-  console.log(req.body);
-  res.end("done");
+app.get("/myStudents", async (req, res) => {
+  const studens = await StudentModel.find();
+  res.status(200).json(studens);
 });
 
 app.listen(3000, () => {
