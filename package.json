@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "npm.js",
   "scripts": {
-    "start": "nodemon express/app.js",
-    "dev": "node express/app.js"
+    "start": "nodemon express/index.js",
+    "dev": "node express/index.js"
   },
   "author": "",
   "license": "ISC",
