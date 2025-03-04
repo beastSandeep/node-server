@@ -55,6 +55,14 @@ app.delete("/deleteFile", (req, res) => {
   res.status(200).json({ message: "file deleted successfuly" });
 });
 
+app.put("/renameFile", (req, res) => {
+  const oldPath = path.resolve(__dirname + "/" + req.query.oldFile); // text.txt
+  const newPath = path.resolve(__dirname + "/" + req.query.newFile); // manni.txt
+  fs.renameSync(oldPath, newPath);
+
+  res.status(200).json({ message: "Rename changed successfully" });
+});
+
 // ------------------------------------------------------------file api's
 
 app.listen(3000, () => {
