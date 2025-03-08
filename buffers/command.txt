@@ -1,7 +1,0 @@
-//delete test.txt
-
-write test.txt asd
-
-//copy test.txt wow.txt
-
-//read text.txt
